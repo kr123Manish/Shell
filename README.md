@@ -53,5 +53,104 @@ do
 		echo $NUM " is odd"
 	fi	
 done
-```
+````
+## Topic: Create .txt file using ```touch``` and perform following operations.
+- Create
+- Insert
+- View
+- Modify
+- Delete 
+``` shell
+# !/bin/sh
+#create function to creat a .txt file name address.txt
+create(){
+	touch addressbook.txt
+}
+<!-- insert function to inset name, address, email id, phone no  -->
+insert()
+{
+  echo "enter the name of person"
+  read name 
+  echo "permanent address"
+  read address
+  echo "email id"
+  read emailid
+  echo "phone no."
+  read number
+  echo -e $name '\t' $address '\t' $emailid '\t' $number >>addressbook.txt #insert data into addressbook.txt
+  echo "Data inserted successfuly"
+}
+# function for view addressbook.txt file
+view()
+{
+ echo "address database"
+ echo -e Name '\t'  Address '\t'  Email_id '\t'  Phone no.
+ cat addressbook.txt
+}
 
+# modify function to modify old data.
+modify()
+{
+ echo "enter the name you want to modify"
+ read name
+ 
+ #search particular  name you want to modify using ```grep``` from addressbook1.txt,
+ #```-v```  use for prints out all the lines that do not matches the pattern,
+ #here we write all unmatched data into addressbook1.txt.
+ 
+ grep -v "$name" addressbook.txt >> addressbook1.txt 
+ #copy addressbook1.txt to addressbook.txt using ```cp```,
+ #at this point addressbook.txt have all info except name which we want to modify.
+ cp addressbook1.txt addressbook.txt 
+ #remove addressbook1.txt
+ rm addressbook1.txt
+# take new input for that name we want to modify.
+  echo "enter the name of person"
+  read name
+  echo "permanent address"
+  read address
+  echo "email id"
+  read emailid
+  echo "phone no."
+  read number
+# write new data into addressbook.txt
+  echo -e $name '\t' $address '\t' $emailid '\t' $number >>addressbook.txt
+  echo "Data modified successfuly"
+}
+
+# delete function to remove data
+delete()
+{
+  echo "enter the name which u want to delete"
+ read name
+ # search name using grep except that data and rest of data copy to addresbook1.txt
+ grep -v "$name" addressbook.txt >> addressbook1.txt
+ # copy addressbook1.txt data to addressbook.txt 
+ cp addressbook1.txt addressbook.txt
+ # remove addressbook1.txt file
+ rm addressbook1.txt
+ echo "Data deleted successfuly"
+}
+
+n=0
+while [ $n -ne 6 ]
+do
+echo "enter your choice"
+echo " 1->create"
+echo " 2->insert"
+echo " 3->view"
+echo " 4->modify"
+echo " 5->delete"
+echo " 6->exit"
+read ch
+
+case $ch in
+1)create ;;
+2)insert ;;
+3)view ;;
+4)modify ;;
+5)delete ;;
+6)exit ;;
+esac
+done
+````
