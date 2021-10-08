@@ -155,3 +155,26 @@ case $ch in
 esac
 done
 ````
+## Topic: Selection sort <a href="https://www.geeksforgeeks.org/selection-sort/">Prerequisite</a>
+### Program4
+``` shell
+echo "Enter size of array";
+read  n;   #get the size of arrary
+read -a arr; # get the array eg: 4 2 1  9 7 6
+echo "Orignal array is: ${arr[*]}";   # output of original array
+# selection sort
+for (( i = 0; i < $n-1; i++ ))
+do
+  for ((j = $i+1; j < $n; j++ ))
+  do
+      if [[ ${arr[$i]} -gt ${arr[$j]} ]]
+      then
+        temp=${arr[$i]};
+        arr[$i]=${arr[$j]};
+        arr[$j]=$temp;
+      fi
+  done
+  
+done
+echo "Sorted array is: ${arr[*]}";  # sorted array output.
+```
