@@ -178,3 +178,66 @@ do
 done
 echo "Sorted array is: ${arr[*]}";  # sorted array output.
 ```
+## Topic: Bubble sort <a href="https://www.geeksforgeeks.org/bubble-sort/">Prerequisite</a>
+### Program5
+``` shell
+bubbleSort(){
+	flag=1;
+	for (( i = 0; i < $n-1; i++ ))
+	do
+	  flag=0;
+	  for ((j = 0; j < $n-1-$i; j++ ))
+	  do
+	      if [[ ${arr[$j]} -gt ${arr[$j+1]} ]]
+	      then
+	        temp=${arr[$j]};
+	        arr[$j]=${arr[$j+1]};
+	        arr[$j+1]=$temp;
+	        flag=1;
+	      fi
+	  done
+
+	  if [[ $flag -eq 0 ]]; then
+	  	return;
+	  fi
+	  
+	done
+}
+echo "Enter size of array";
+read  n;
+echo "Enter the array";
+read -a arr;
+echo "Orignal array is: ${arr[*]}";
+bubbleSort;
+echo "Final sorted Array is ${arr[*]}";
+```
+## OR
+```shell
+echo "Enter size of array";
+read  n; #5
+echo "Enter the array";
+read -a arr; #eg: 4 5 3 2 1
+echo "Orignal array is: ${arr[*]}";
+
+flag=1;
+for (( i = 0; i < $n-1; i++ ))
+do
+	flag=0;
+	for ((j = 0; j < $n-1-$i; j++ ))
+	do
+		if [[ ${arr[$j]} -gt ${arr[$j+1]} ]]
+	    then
+	        temp=${arr[$j]};
+	        arr[$j]=${arr[$j+1]};
+	        arr[$j+1]=$temp;
+	        flag=1;
+	    fi
+	done
+
+	if [[ $flag -eq 0 ]]; then
+	  	break;
+	fi
+	  
+done
+echo "Final sorted Array is ${arr[*]}";
+```
